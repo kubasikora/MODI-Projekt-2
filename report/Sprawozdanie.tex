@@ -1,0 +1,103 @@
+\documentclass[a4paper,titlepage,11pt,floatssmall]{mwrep}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[OT1]{fontenc}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.groupplots}
+
+\usepackage{siunitx}
+
+\usepackage{float}
+\definecolor{szary}{rgb}{0.95,0.95,0.95}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+
+\SendSettingsToPgf
+\title{\bf Sprawozdanie z projektu nr 2\\ Zadanie nr 36  \vskip 0.1cm}
+\author{Jakub Sikora \and nr albumu 283418}
+\date{\today}
+\pgfplotsset{compat=1.15}	
+\begin{document}
+
+
+\makeatletter
+\renewcommand{\maketitle}{\begin{titlepage}
+		\begin{center}{\LARGE {\bf
+					Wydział Elektroniki i Technik Informacyjnych}}\\
+			\vspace{0.4cm}
+			{\LARGE {\bf Politechnika Warszawska}}\\
+			\vspace{0.3cm}
+		\end{center}
+		\vspace{5cm}
+		\begin{center}
+			{\bf \LARGE Modelowanie i identyfikacja \vskip 0.1cm}
+		\end{center}
+		\vspace{1cm}
+		\begin{center}
+			{\bf \LARGE \@title}
+		\end{center}
+		\vspace{2cm}
+		\begin{center}
+			{\bf \Large \@author \par}
+		\end{center}
+		\vspace*{\stretch{6}}
+		\begin{center}
+			\bf{\large{Warszawa, \@date\vskip 0.1cm}}
+		\end{center}
+	\end{titlepage}
+	}
+\makeatother
+\maketitle
+
+\tableofcontents
+
+\chapter{Zadania obowiązkowe}
+
+\section{Identyfikacja modeli statycznych}
+
+\subsection{Wykres danych statycznych}
+
+\indent Na rysunku poniżej przedstawiłem dane z pliku \texttt{danestat36.txt}. Na osi poziomej przedstawiłem sterowanie które zmienia się w przedziale $[-1; 1]$. Na osi pionowej wykresu znajduje się wyjście procesu które zmienia się w przedziale $[-3,1; 0,25]$.
+\bigskip
+\begin{figure}[H]
+\centering
+\includegraphics[width = \textwidth]{../figures/stat/dane_overall.pdf}
+\caption{Przedstawienie statycznych danych pomiarowych}
+\end{figure}
+
+
+\newpage
+\subsection{Podział na zbiór uczący i weryfikujący}
+\indent W celu identyfikacji modelu metodą najmniejszych kwadratów, najpierw należy dokonać podziału zbioru danych na zbiór uczący i zbiór weryfikujący. Najprostszą metodą podziału, z której powinniśmy uzyskać dwa równomierne zbioru, jest przyporządkowywanie rekordu na zmianę raz do zbioru uczącego a raz do zbioru weryfikującego. Za pomocą matlaba (skrypt \texttt{stat/zad\_{}b.m} dokonałem prostego podziału. Oba zbiory przedstawiłem na rysunkach poniżej.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.7\textwidth]{../figures/stat/dane_ucz.pdf}
+\caption{Zbiór danych uczących}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.7\textwidth]{../figures/stat/dane_wer.pdf}
+\caption{Zbiór danych weryfikujących}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = \textwidth]{../figures/stat/dane_comp.pdf}
+\caption{Porównanie zbiorów: weryfikującego i uczącego.}
+\end{figure}
+
+\indent Na podstawie rysunku 1.4, można stwierdzić że uzyskany podział jest wystarczająco równomierny. 
+
+
+
+
+
+
+
+\end{document}

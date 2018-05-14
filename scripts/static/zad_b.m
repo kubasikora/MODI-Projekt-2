@@ -28,7 +28,7 @@ y_wer = y(2:2:200);
 % Wykres danych ucz¹cych
 figure
 for i=1:100
-plot(u_ucz(i),y_ucz(i), '.b')
+plot(u_ucz(i),y_ucz(i), '.r')
 hold on
 end
 
@@ -74,6 +74,7 @@ grid minor
 title('Porównanie zbiorów ucz¹cego i weryfikuj¹cego')
 xlabel('Sterowanie u');
 ylabel('Wyjœcie procesu y');
+legend('Zbiór ucz¹cy', 'Zbiór weryfikuj¹cy');
 
-print_figure('dane_wer')
+print_figure('dane_comp')
 hold off
