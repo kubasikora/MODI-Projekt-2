@@ -61,7 +61,7 @@
 
 \subsection{Wykres danych statycznych}
 
-\indent Na rysunku poniżej przedstawiłem dane z pliku \texttt{danestat36.txt}. Na osi poziomej przedstawiłem sterowanie które zmienia się w przedziale $[-1; 1]$. Na osi pionowej wykresu znajduje się wyjście procesu które zmienia się w przedziale $[-3,1; 0,25]$.
+\indent Na rysunku poniżej przedstawiłem dane z pliku \texttt{danestat36.txt}. Na osi poziomej przedstawiłem sterowanie, które zmienia się w przedziale $[-1; 1]$. Na osi pionowej wykresu znajduje się wyjście procesu, które jest zmienne w zakresie $[-3,1; 0,25]$. Na pierwszy rzut oka można stwierdzić że badany proces jest nieliniowy i co najmniej 3 rzędu.
 \bigskip
 \begin{figure}[H]
 \centering
@@ -94,10 +94,101 @@
 
 \indent Na podstawie rysunku 1.4, można stwierdzić że uzyskany podział jest wystarczająco równomierny. 
 
+\subsection{Statyczny model liniowy}
+\indent Wykorzystując zbiór danych uczących można przystąpić do identyfikacji statycznego modelu liniowego postaci:
+\begin{equation*}
+y(u) = w_1u + w_0
+\end{equation*}
+gdzie $w_0$, $w_1$ są współczynnikami uzyskanymi za pomocą metody najmniejszych kwadratów. W ogólności, metoda ta polega na minimalizacji błędu średniokwadratowego modelu:
+\begin{equation*}
+\min_{w} \sum_{i=1}^{P} (y_i - y_i^{mod})^2
+\end{equation*}
+Za pomocą tej metody możemy zidentyfikować model o dowolnym rzędzie, który będzie najlepiej dopasowany do danych. W tym zadaniu skupiłem się jednak na modelu liniowym. Aby wyznaczyć wektor współczynników:
+$$
+\mathbf{w} =
+\left[\begin{array}{c}
+w_1 \\
+w_0 \\
+\end{array} \right]
+$$
+\newpage
 
+W celu wyznaczenia wektora $w$, zapisałem nadokreślny układ równań, czyli taki który ma więcej równań niż zmiennych. 
 
+$$
+\left[\begin{array}{c}
+y_1 \\
+y_2 \\
+\vdots \\
+y_P
+\end{array} \right] 
+=
+\left[ \begin{array}{cc}
+x_1 & 1  \\
+x_2 & 1 \\
+\vdots & \vdots \\
+x_P & 1\\
+\end{array} \right]
+\left[\begin{array}{c}
+w_1 \\
+w_0 \\
+\end{array} \right]
+$$
 
+Co można w skrócie zapisać:
+\begin{equation*}
+Y = Mw
+\end{equation*}
 
+W matlabie, liniowe zadanie najmniejszych kwadratów można rozwiązać za pomocą operatora lewego dzielenia:
+\begin{equation*}
+w = M \setminus Y
+\end{equation*}
 
+Identyfikacja modelu powinna odbywać się tylko przy pomocy zbioru danych uczących. Dane weryfikujące powinny służyć tylko i wyłącznie do walidacji modelu. W przypadku gdy chcemy uzyskać bardziej dokładne modele możemy skorzystać z walidacji k-krotnej zwanej też sprawdzianem krzyżowym. W takim przypadku z zbiór danych dzielimy na $k$ podzbiorów i dla każdego podzbioru identyfikujemy model, następnie sprawdzamy go z pozostałymi $k-1$ podzbiorami tak aby na końcu wybrać średnią ważoną z wszystkich modeli. W ramach tego projektu ograniczę się jednak do zwykłej metody podziału na zbiór uczący i weryfikujący. Do identyfikacji skorzystałem z podziału na podzbiory wyznaczonego w poprzednim zadaniu.\\
+\indent Za pomocą skryptu \texttt{stat/zad\_{}d.m} uzyskałem następujące wartości współczynników:
+$$
+\left[\begin{array}{c}
+w_1 \\
+w_0 \\
+\end{array} \right]
+= 
+\left[\begin{array}{c}
+-0,59424 \\
+-1,0778 \\
+\end{array} \right]
+$$
+
+Model liniowy jest postaci:
+\begin{equation*}
+y = -0,59424u -1,0778 
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.80\textwidth]{../figures/stat/lin_mod_ucz_comp.pdf}
+\caption{Model liniowy na tle danych uczących}
+\end{figure}
+
+Uzyskany błąd średniokwadratowy dla zbioru uczącego wyniósł $E_{ucz} = 78,0732$. Już dla zbioru uczącego widać że model bardzo źle przybliża opisywany proces.
+
+\indent O wiele bardziej interesujące jest zachowanie uzyskanego modelu w porównaniu do danych ze zbioru weryfikującego. Na podstawie błędu modelu możemy uzyskać informację o realnej przydatności modelu.
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.80\textwidth]{../figures/stat/lin_mod_wer_comp.pdf}
+\caption{Model liniowy na tle danych weryfikujących}
+\end{figure}
+
+W tym przypadku błąd średniokwadratowy wzrósł do wartości $E_{wer} = 84,2596$. O przydatności (a raczej o jej braku) modelu dużo można powiedzieć na podstawie samego wykresu. Widać że model liniowy w żadnym stopniu nie aproksymuje danych pomiarowych, przez co jego użyteczność jest niewielka.  
+\newpage 
+Kolejnym sposobem na weryfikację modelu, jest narysowanie wykresu odpowiedzi modelu od rzeczywistych danych pomiarowych. W przypadku idealnym wykres powinien ułożyć się w prostą nachyloną pod kątem $45^{\circ}$
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.80\textwidth]{../figures/stat/lin_mod_od_danych.pdf}
+\caption{Model liniowy na tle danych weryfikujących}
+\end{figure}
+Jak widać na rysunku 1.7, odpowiedź modelu jest niewspółmierna z rzeczywistymi danymi. W kolejnych zadaniach będę rozważał modele nieliniowe, które powinny znacznie lepiej opisywać ten proces.
+
+\subsection{Statyczne modele nieliniowe}
 
 \end{document}

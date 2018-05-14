@@ -47,8 +47,7 @@ figure
 plot(u_mod, y_mod, '-r');
 hold on
 for i=1:100
-    plot(u_wer(i),y_wer(i), '.b')
-    
+    plot(u_wer(i),y_wer(i), '.b') 
 end
 
 % Przygotowanie wykresu do prezentacji
@@ -61,3 +60,24 @@ legend('Model liniowy', 'Dane weryfikuj¹ce')
 print_figure('lin_mod_wer_comp')
 hold off
 
+if(w(1) > 0)
+sep = '+';
+else sep = ' ';
+end
+disp(strcat('Postaæ modelu liniowego:  y =', num2str(w(2)), '*u ', sep, num2str(w(1))))
+
+% Wykres model(dane)
+figure 
+hold on
+for i=1:100
+    plot(y(i), y_mod(i), '.b') 
+end
+
+% Przygotowanie wykresu do prezentacji
+grid on
+grid minor
+title('Porównanie odpowiedzi modelu do danych rzeczywistych')
+xlabel('Dane statyczna procesu y');
+ylabel('OdpowiedŸ modelu y_mode');
+print_figure('lin_mod_od_danych')
+hold off
