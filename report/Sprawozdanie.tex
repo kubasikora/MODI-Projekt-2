@@ -179,18 +179,322 @@ Uzyskany błąd średniokwadratowy dla zbioru uczącego wyniósł $E_{ucz} = 78,
 \caption{Model liniowy na tle danych weryfikujących}
 \end{figure}
 
-W tym przypadku błąd średniokwadratowy wzrósł do wartości $E_{wer} = 84,2596$. O przydatności (a raczej o jej braku) modelu dużo można powiedzieć na podstawie samego wykresu. Widać że model liniowy w żadnym stopniu nie aproksymuje danych pomiarowych, przez co jego użyteczność jest niewielka.  
+W tym przypadku błąd średniokwadratowy wzrósł do wartości $E_{wer} = 97,1835$. O przydatności (a raczej o jej braku) modelu dużo można powiedzieć na podstawie samego wykresu. Widać że model liniowy w żadnym stopniu nie aproksymuje danych pomiarowych, przez co jego użyteczność jest niewielka.  
 \newpage 
 Kolejnym sposobem na weryfikację modelu, jest narysowanie wykresu odpowiedzi modelu od rzeczywistych danych pomiarowych, czyli porównanie odpowiedzi rzeczywistej i wyniku modelu dla tych samych wartości $u$. W przypadku idealnym wykres powinien ułożyć się w prostą nachyloną pod kątem $45^{\circ}$
 \begin{figure}[H]
 \centering
 \includegraphics[width = 0.80\textwidth]{../figures/stat/lin_mod_od_danych.pdf}
-\caption{Model liniowy na tle danych weryfikujących}
+\caption{Porównanie odpowiedzi procesu i odpowiedzi modelu}
 \end{figure}
-Jak widać na rysunku 1.7, odpowiedź modelu jest niewspółmierna z rzeczywistymi danymi. W kolejnych zadaniach będę rozważał modele nieliniowe, które powinny znacznie lepiej opisywać ten proces.
+Jak widać na rysunku 1.7, odpowiedź modelu liniowego jest niewspółmierna z rzeczywistymi danymi. W kolejnych zadaniach będę rozważał modele nieliniowe, które powinny znacznie lepiej opisywać ten proces.
 
 \subsection{Statyczne modele nieliniowe}
 
+W przypadku podanych danych, o wiele lepiej sprawdziłyby się modele nieliniowe. Za pomocą skryptu \texttt{static/zad\_d.m} zidentyfikowałem modele rzędu większego niż 1. 
 
+\subsubsection{Model kwadratowy}
+
+Pierwszym rozważanym przeze mnie modelem jest model rzędu drugiego opisany wzorem: 
+
+\begin{equation*}
+y(u) = w_2u^2 + w_1u + w_0
+\end{equation*}
+
+Wyznaczony wektor współczynników:
+
+$$
+\left[\begin{array}{c}
+w_0 \\
+w_1 \\
+w_2 \\
+\end{array} \right]
+= 
+\left[\begin{array}{c}
+-0,1192	\\
+-0,2390 \\
+-2,7422 \\
+\end{array} \right]
+$$
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_ucz_comp_r_2.pdf}
+\caption{Model drugiego rzędu na tle danych uczących}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_wer_comp_r_2.pdf}
+\caption{Model drugiego rzędu na tle danych weryfikujących}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_od_danych_r_2.pdf}
+\caption{Porównanie odpowiedzi procesu i odpowiedzi modelu}
+\end{figure}
+
+Jak widać na powyższych wykresach, model kwadratowy znacznie lepiej opisuje zadany proces. Błąd uczący jak i błąd weryfikujący zmalały o rząd wielkości i wynoszą teraz $E_{ucz} = 7,7713$ i $E_{wer} = 7,4373$, a wykres odpowiedzi modelu do danych rzeczywistych zaczyna przypominać prostą.
+
+\subsubsection{Model trzeciego rzędu}
+
+Model trzeciego rzędu opisany jest wzorem:
+
+\begin{equation*}
+y(u) = w_3u^3 + w_2u^2 + w_1u + w_0
+\end{equation*}
+
+Wyznaczony wektor współczynników:
+
+$$
+\left[\begin{array}{c}
+w_0 \\
+w_1 \\
+w_2 \\
+w_3 \\
+\end{array} \right]
+= 
+\left[\begin{array}{c}
+-0,1183	\\
+-1,2736 \\
+-2,8837 \\
+1,6696 \\ 
+\end{array} \right]
+$$
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_ucz_comp_r_3.pdf}
+\caption{Model trzeciego rzędu na tle danych uczących}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_wer_comp_r_3.pdf}
+\caption{Model trzeciego rzędu na tle danych weryfikujących}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_od_danych_r_3.pdf}
+\caption{Porównanie odpowiedzi procesu i odpowiedzi modelu}
+\end{figure}
+
+Zgodnie z oczekiwaniami, model trzeciego rzędu jeszcze lepiej opisuje rzeczywisty proces. Błędy uczący weryfikujący zmalały i wynoszą teraz $E_{ucz} = 1,5862$ i $E_{wer} = 1,5327$. Kontrolny wykres odpowiedzi modelu od danych procesu przypomina już w dużej mierze prostą nachyloną pod kątem czterdziestu pięciu stopni. Model ten można by uznać za zadowalający jednak w przedziale sterowań $[0,6 ; 1]$ odpowiedź modelu jeszcze nie do końca odpowiada danym rzeczywistym. Można to poprawić stosując model wyższego rzędu.
+
+\subsubsection{Model czwartego rzędu}
+
+Model czwartego rzędu opisany jest wzorem:
+
+\begin{equation*}
+y(u) = w_4u^4 + w_3u^3 + w_2u^2 + w_1u + w_0
+\end{equation*}
+
+Wyznaczony wektor współczynników:
+
+$$
+\left[\begin{array}{c}
+w_0 \\
+w_1 \\
+w_2 \\
+w_3 \\
+w_4 \\
+\end{array} \right]
+= 
+\left[\begin{array}{c}
+-0,0050	\\
+-1,2565 \\
+-4,0568 \\
+1,5953 \\
+1,3547 \\ 
+\end{array} \right]
+$$
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_ucz_comp_r_4.pdf}
+\caption{Model czwartego rzędu na tle danych uczących}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_wer_comp_r_4.pdf}
+\caption{Model czwartego rzędu na tle danych weryfikujących}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_od_danych_r_4.pdf}
+\caption{Porównanie odpowiedzi procesu i odpowiedzi modelu}
+\end{figure}
+
+Stosując model czwartego rzędu udało się zminimalizować błąd modelu w przedziale $[0,6 ; 1]$ o którym mowa było w przypadku poprzedniej wersji modelu. Błędy uczący weryfikujący zmalały i wynoszą teraz $E_{ucz} = 0,44789 $ i $E_{wer} = 0,49636$. Wykres kontrolny (1.16) świadczy o doskonałej poprawności modelu. 
+
+\subsubsection{Model piątego rzędu}
+Model piątego rzędu opisany jest wzorem:
+
+\begin{equation*}
+y(u) = w_5u^5 + w_4u^4 + w_3u^3 + w_2u^2 + w_1u + w_0
+\end{equation*}
+
+Wyznaczony wektor współczynników:
+
+$$
+\left[\begin{array}{c}
+w_0 \\
+w_1 \\
+w_2 \\
+w_3 \\
+w_4 \\
+w_5 \\
+\end{array} \right]
+= 
+\left[\begin{array}{c}
+-0,0046	\\
+-1,1810 \\
+-4,0509 \\
+1,2576 \\
+1,3542 \\
+0,2973 \\ 
+\end{array} \right]
+$$
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_ucz_comp_r_5.pdf}
+\caption{Model piątego rzędu na tle danych uczących}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_wer_comp_r_5.pdf}
+\caption{Model piątego rzędu na tle danych weryfikujących}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_od_danych_r_5.pdf}
+\caption{Porównanie odpowiedzi procesu i odpowiedzi modelu}
+\end{figure}
+
+Zwiększenie rzędu modelu w tym przypadku nie przyniosło oczekiwanych rezultatów. Błędy uczący i weryfikujący utrzymają się na mniej więcej stałym poziomie. Model jest bardzo dokładny ale zwiększyła się jego złożoność numeryczna. Znacznie prościej i szybciej jest obliczać wartość wielomianu rzędów niższych, co w  prostych sterownikach opartych na mikrokontrolerach w których zdolność obliczeniowa jest ograniczona może mieć kolosalne znaczenie.
+
+\subsubsection{Model dziesiątego rzędu}
+Model dziesiątego rzędu opisany jest wzorem:
+
+\begin{equation*}
+y(u) = w_{10}u^{10} + w_9u^9 + w_8u^8 + w_7u^7 + w_6u^6 + w_5u^5 + w_4u^4 + w_3u^3 + w_2u^2 + w_1u + w_0
+\end{equation*}
+
+Wyznaczony wektor współczynników:
+
+$$
+\left[\begin{array}{c}
+w_0 \\
+w_1 \\
+w_2 \\
+w_3 \\
+w_4 \\
+w_5 \\
+w_6 \\
+w_7 \\
+w_8 \\
+w_9 \\
+w_{10} \\
+\end{array} \right]
+= 
+\left[\begin{array}{c}
+-0,0125	\\
+-1,1545 \\
+-3,9583 \\
+1,0097 \\
+1,9790 \\
+0,9129 \\
+-3,5286 \\
+-0,4370 \\
+4,7574 \\
+0,0213 \\
+-1,8973 \\
+\end{array} \right]
+$$
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_ucz_comp_r_10.pdf}
+\caption{Model dziesiątego rzędu na tle danych uczących}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_wer_comp_r_10.pdf}
+\caption{Model dziesiątego rzędu na tle danych weryfikujących}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.9\textwidth]{../figures/stat/mod_od_danych_r_10.pdf}
+\caption{Porównanie odpowiedzi procesu i odpowiedzi modelu}
+\end{figure}
+
+Ostatni eksperyment przeprowadziłem dla modelu rzędu dziesiątego. Pomimo dużego rzędu wielomianu, błąd uczący i weryfikujący jest porównywalny z błędami modelu czwartego rzędu. Zupełny brak zwiększenia dokładności jest niewspółmierny z dużym wzrostem złożoności obliczeniowej. 
+
+\newpage
+
+\subsection{Porównanie zidentyfikowanych modeli}
+
+W tabeli poniżej porównałem błąd uczący i błąd weryfikujący wszystkich rozważanych modeli.
+\bigskip
+\begin{center}
+
+
+\begin{tabular}{|c|c|c|}
+  \hline 
+  Rząd modelu & Błąd uczący & Błąd weryfikujący \\
+  \hline
+  1 & $78,0732$ & $97,1835$ \\
+  \hline
+  2 & $7,7713$ & $7,4373$ \\
+  \hline
+  3 & $1,5862$ & $1,5327$ \\
+  \hline
+  4 & $0,44789$ & $0,39636$ \\
+  \hline
+  5 & $0,43602$ & $0,40163$ \\
+  \hline
+  10 & $0,41899$ & $0,41433$ \\
+  \hline
+\end{tabular} 
+\end{center}
+
+\bigskip
+Wybierając model do dalszych zastosowań należy kierować się dwoma względami. Wybrany model powinien mieć jak najmniejszy błąd weryfikujący oraz powinien być jak najniższego rzędu. W przypadku przeprowadzonej identyfikacji, wybór ostatecznego modelu statycznego jest sprawą prostą. Najniższy błąd osiągnięty został dla modelu rzędu czwartego. Taki model ma relatywnie niski rząd i jego obliczanie nie jest procedurą złożoną. Dlatego też do projektowania dalszych rozwiązań dla tego procesu (regulatory, obserwatory itp.) wykorzystałbym model rzędu czwartego postaci: 
+
+\begin{equation*}
+y(u) = 1,3547u^4 + 1,5953u^3 - 4,0568u^2 - 1,2565u - 0, 0050
+\end{equation*}
+
+\newpage
+\section{Identyfikacja modeli dynamicznych}
 
 \end{document}

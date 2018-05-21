@@ -2,9 +2,9 @@
 % Autor: Jakub Sikora
 % Skrypt wykonuje zadanie 1, podpunkt d
 
-% UWAGA - Przed rozpoczêciem pracy uruchomiæ skrypt zad_b.m
+% UWAGA - Przed rozpoczêciem pracy nale¿y wyczyscic workspace'a i uruchomiæ skrypt zad_b.m
 
-r = 2; % rzad modelu
+r = 10; % rzad modelu
 
 % Wektor wyjœæ Y
 Y = y_ucz;
@@ -58,7 +58,7 @@ title(strcat('Model liniowy na tle danych ucz¹cych, b³¹d œr. kwadr = ', num2str(
 xlabel('Sterowanie u');
 ylabel('Wyjœcie procesu y');
 legend('Model liniowy', 'Dane ucz¹ce')
-print_figure(strcat('lin_mod_ucz_comp_r_', num2str(r)))
+print_figure(strcat('mod_ucz_comp_r_', num2str(r)))
 hold off
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,7 +89,7 @@ title(strcat('Model liniowy i zbiór weryfikuj¹cy, b³¹d œr. kwadr = ', num2str(we
 xlabel('Sterowanie u');
 ylabel('Wyjœcie procesu y');
 legend('Model liniowy', 'Dane weryfikuj¹ce')
-print_figure(strcat('lin_mod_wer_comp_r_', num2str(r)))
+print_figure(strcat('mod_wer_comp_r_', num2str(r)))
 hold off
 
 
@@ -116,5 +116,5 @@ grid minor
 title('Porównanie odpowiedzi modelu do danych rzeczywistych')
 xlabel('Dane procesu');
 ylabel('OdpowiedŸ modelu');
-print_figure(strcat('lin_mod_od_danych_r_', num2str(r)));
+print_figure(strcat('mod_od_danych_r_', num2str(r)));
 hold off

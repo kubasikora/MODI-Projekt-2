@@ -2,7 +2,7 @@
 % Autor: Jakub Sikora
 % Skrypt wykonuje zadanie 1, podpunkt c
 
-% UWAGA - Przed rozpoczêciem pracy uruchomiæ skrypt zad_b.m
+% UWAGA - Przed rozpoczêciem pracy nale¿y wyczyscic workspace'a i uruchomiæ skrypt zad_b.m
 
 % Poszukiwana funkcja y = w1 * u + w0
 
@@ -93,7 +93,7 @@ end
 grid on
 grid minor
 title('Porównanie odpowiedzi modelu do danych rzeczywistych')
-xlabel('Dane statyczna procesu y');
-ylabel('OdpowiedŸ modelu y_mode');
+xlabel('Dane procesu');
+ylabel('OdpowiedŸ modelu');
 print_figure('lin_mod_od_danych')
 hold off
