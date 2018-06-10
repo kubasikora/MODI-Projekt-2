@@ -11,6 +11,8 @@ cd('data')
 % Zaladuj plik z danymi
 load danestat36.txt
 
+
+
 % Powrot do folderu scripts
 cd(folder)
 
@@ -31,4 +33,4 @@ title('Statyczne dane pomiarowe')
 xlabel('Sterowanie u');
 ylabel('Wyjœcie procesu y');
 
-print_figures('dane_overall')
+print_figure('dane_overall')

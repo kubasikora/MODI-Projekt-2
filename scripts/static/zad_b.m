@@ -14,6 +14,10 @@ load danestat36.txt
 % Powrot do folderu scripts
 cd(folder)
 
+% Sortowanie danych
+[val, in] = sort(danestat36);
+danestat36 = danestat36(in,:);
+
 % Separacja sygnalow
 u = danestat36(1:200,1);
 y = danestat36(1:200,2);
