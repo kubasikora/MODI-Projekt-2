@@ -72,7 +72,7 @@
 
 \newpage
 \subsection{Podział na zbiór uczący i weryfikujący}
-\indent W celu identyfikacji modelu metodą najmniejszych kwadratów, najpierw należy dokonać podziału zbioru danych na zbiór uczący i zbiór weryfikujący. Najprostszą metodą podziału, z której powinniśmy uzyskać dwa równomierne zbioru, jest przyporządkowywanie rekordu na zmianę raz do zbioru uczącego a raz do zbioru weryfikującego. Za pomocą matlaba (skrypt \texttt{stat/zad\_{}b.m} dokonałem prostego podziału. Oba zbiory przedstawiłem na rysunkach poniżej.
+\indent W celu identyfikacji modelu metodą najmniejszych kwadratów, najpierw należy dokonać podziału zbioru danych na zbiór uczący i zbiór weryfikujący. Najprostszą metodą podziału z której powinniśmy uzyskać dwa równomierne zbioru, jest przyporządkowywanie rekordu z posortowanego zbioru danych na zmianę raz do zbioru uczącego a raz do zbioru weryfikującego. Za pomocą matlaba (skrypt \texttt{stat/zad\_{}b.m} dokonałem prostego podziału. Oba zbiory przedstawiłem na rysunkach poniżej.
 
 \begin{figure}[H]
 \centering
@@ -496,7 +496,7 @@ y(u) = 1,3547u^4 + 1,5953u^3 - 4,0568u^2 - 1,2565u - 0, 0050
 
 \newpage
 \section{Identyfikacja modeli dynamicznych}
-Metoda najmniejszych kwadratów może również służyć do identyfikacji modeli dynamicznych. W tym celu również skorzystałem z danych uczących i weryfikujących, jednak format tych danych jest zgoła odmienny niż w przypadku modeli statycznych. Zbiór danych musi być uporządkowany w czasie aby poprawnie reprezentować dynamikę procesu.
+Metoda najmniejszych kwadratów może również służyć do identyfikacji modeli dynamicznych. W tym celu również wymagane są dwa zbiory danych: uczące i weryfikujące, jednak format tych danych jest zgoła odmienny niż w przypadku modeli statycznych. Zbiór danych musi być uporządkowany w czasie aby poprawnie reprezentować dynamikę procesu.
 
 \subsection{Zbiory danych}
 \subsubsection{Dane uczące}
@@ -978,7 +978,7 @@ Rząd modelu & Stopień wielomianu & $ E_{ucz}^{ARX}$     & $E_{ucz}^{OE}$    & 
 \caption{Model OE (z rekurencją) dla danych weryfikujących}
 \end{figure}
 
-Na pierwszy rzut oka można stwierdzić że dodanie członów nieliniowych do równania modelu znacząco poprawia jego jakość. Błędy znacznie zmalały, choć nadal są dalekie od pożądanych. 
+Dodanie członów nieliniowych do równania modelu znacząco poprawia jego jakość. Błędy znacznie zmalały, choć nadal są dalekie od pożądanych. 
 
 \subsection{Modele stopnia trzeciego}
 W kolejnym eksperymencie sprawdziłem czy modele stopnia trzeciego okażą się lepsze od modeli kwadratowych.
@@ -1243,7 +1243,7 @@ Rząd modelu & Stopień wielomianu & $E_{ucz}^{ARX}$    & $E_{ucz}^{OE}$     & $
 
 \subsubsection{Finalny model wielomianowy}
 
-Najmniejszy błąd na zbiorze weryfikacyjnym uzyskałem dla modelu o rzędzie 7 i stopniu wielomianu 4. Liczba współczynników tego modelu wynosi 28. W mojej opinii jest to duża liczba i dlatego lepiej jako finalny wybrać model o rzędzie piątym i tym samym stopniu wielomianu. Różnica w błędzie między modelami jest niewielka ale za to liczba współczynników modelu spadła do 20.
+Najmniejszy błąd na zbiorze weryfikacyjnym uzyskałem dla modelu o rzędzie 7 i stopniu wielomianu 4. Liczba współczynników tego modelu wynosi 56. W mojej opinii jest to duża liczba i dlatego lepiej jako finalny wybrać model o rzędzie piątym i tym samym stopniu wielomianu. Różnica w błędzie między modelami jest niewielka ale za to liczba współczynników modelu spadła do 40.
 \bigskip
 
 \begin{figure}[H]
@@ -1314,4 +1314,110 @@ Jak widać na powyższym zestawieniu, zabieg ten nie poprawił jakości uzyskane
 \caption{Model OE (z rekurencją) dla danych weryfikujących}
 \end{figure}
 
+\subsection{Podsumowanie}
+Ostatecznie, biorąc pod uwagę błędy modeli uzyskane na zbiorze danych weryfikujących i liczbę współczynników modelu, pozostaję przy wcześniej opisanym modelu o rzędzie piątym i czwartym stopniu wielomianu. Jest on opisany równaniem:
+
+$$ 
+y[k] = 
+\left[\begin{array}{c}
+-0,00437\\
+0,009436\\
+0,009991\\
+-0,01366\\
+-0,02324\\
+-0,10975\\
+0,024783\\
+0,047855\\
+-0,03800\\
+-0,12847\\
+0,045590\\
+0,047818\\
+-0,03358\\
+-0,08300\\
+0,042046\\
+0,019747\\
+-0,01455\\
+-0,05451\\
+0,019771\\
+0,020342\\
+0,500728\\
+0,074039\\
+0,061178\\
+0,013292\\
+0,343576\\
+-0,22313\\
+-0,17283\\
+-0,03652\\
+0,305840\\
+0,204970\\
+0,151445\\
+0,032141\\
+-0,01918\\
+-0,08662\\
+-0,04533\\
+-0,00832\\
+-0,22209\\
+0,029860\\
+0,005184\\
+-0,00063\\
+\end{array} \right]
+\cdot
+\left[\begin{array}{c}
+   u[k-1] \\
+   u[k-2] \\
+   u[k-3] \\ 
+   u[k-4] \\ 
+   u[k-5] \\ 
+   (u[k-1])^2 \\
+   (u[k-2])^2 \\
+   (u[k-3])^2 \\ 
+   (u[k-4])^2 \\ 
+   (u[k-5])^2 \\ 
+   (u[k-1])^3 \\
+   (u[k-2])^3 \\
+   (u[k-3])^3 \\ 
+   (u[k-4])^3 \\ 
+   (u[k-5])^3 \\
+   (u[k-1])^4 \\
+   (u[k-2])^4 \\
+   (u[k-3])^4 \\ 
+   (u[k-4])^4 \\ 
+   (u[k-5])^4 \\
+   y[k-1] \\
+   y[k-2] \\
+   y[k-3] \\ 
+   y[k-4] \\ 
+   y[k-5] \\ 
+   (y[k-1])^2 \\
+   (y[k-2])^2 \\
+   (y[k-3])^2 \\ 
+   (y[k-4])^2 \\ 
+   (y[k-5])^2 \\ 
+   (y[k-1])^3 \\
+   (y[k-2])^3 \\
+   (y[k-3])^3 \\ 
+   (y[k-4])^3 \\ 
+   (y[k-5])^3 \\
+   (y[k-1])^4 \\
+   (y[k-2])^4 \\
+   (y[k-3])^4 \\ 
+   (y[k-4])^4 \\ 
+   (y[k-5])^4 \\
+\end{array} \right]^T
+$$
+\chapter{Zadanie dodatkowe}
+
+\section{Charakterystyka statyczna}
+Ostatnim zadaniem w ramach projektu było wyznaczenie statycznej charakterystyki wyznaczonego modelu. Wyznaczenie tej charakterystyki jest zagadnieniem nietrywialnym. Aby wyznaczyć taką charakterystykę należy założyć że wejście i wyjście procesu są stałe. Następnie należy rozwiązać szereg równań nieliniowych dla interesującego zakresu sygnału sterującego. Do rozwiązania tego problemu użyłem polecenia matlaba \texttt{fsolve}. Uzyskana charakterystyka znajduje się na rysunku poniżej.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.85\textwidth]{../figures/dyn/chtyka_stat_mod_nielin.pdf}
+\caption{Charakterystyka statyczna modelu regresyjnego}
+\end{figure}
+
+Korzystając ze wcześniej napisanych skryptów do obliczania statycznych modeli regresyjnych udało mi się otrzymać następujący wzór tej charakterystyki w zakresie sterowań od $[-1, 1]$:
+\begin{equation*}
+y(u) = -1,358 \cdot 10^{-6}u^4 + 0,1252u^3 + 0,40309u^2 - 0,15647u -0,134302
+\end{equation*}
 \end{document}
