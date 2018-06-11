@@ -27,13 +27,6 @@ for deg = 1:poly_deg
             for i=1:nb
                 for k=1:deg
                     M_u(j, (i-1)*deg + k) = power(u_ucz(j - i),k);
-                end
-            end
-        end
-        
-        for j=na+1:P
-            for i=1:na
-                for k=1:deg
                     M_y(j, (i-1)*deg + k) = power(y_ucz(j - i),k);
                 end
             end
@@ -52,13 +45,6 @@ for deg = 1:poly_deg
             for i=1:nb
                 for k=1:deg
                     y_mod(j) = y_mod(j) + w((i-1)*deg + k)*power(u_ucz(j - i),k);
-                end
-            end
-        end
-        
-        for j=na+1:P
-            for i=1:na
-                for k=1:deg
                     y_mod(j) = y_mod(j) + w(nb*deg + (i-1)*deg + k)*power(y_ucz(j - i),k);
                 end
             end
@@ -90,13 +76,6 @@ for deg = 1:poly_deg
             for i=1:nb
                 for k=1:deg
                     y_mod(j) = y_mod(j) + w((i-1)*deg + k)*power(u_ucz(j - i),k);
-                end
-            end
-        end
-        
-        for j=na+1:P
-            for i=1:na
-                for k=1:deg
                     y_mod(j) = y_mod(j) + w(nb*deg + (i-1)*deg + k)*power(y_mod(j - i),k);
                 end
             end
@@ -126,13 +105,6 @@ for deg = 1:poly_deg
             for i=1:nb
                 for k=1:deg
                     y_mod(j) = y_mod(j) + w((i-1)*deg + k)*power(u_wer(j - i),k);
-                end
-            end
-        end
-        
-        for j=na+1:P
-            for i=1:na
-                for k=1:deg
                     y_mod(j) = y_mod(j) + w(nb*deg + (i-1)*deg + k)*power(y_wer(j - i),k);
                 end
             end
@@ -163,13 +135,6 @@ for deg = 1:poly_deg
             for i=1:nb
                 for k=1:deg
                     y_mod(j) = y_mod(j) + w((i-1)*deg + k)*power(u_wer(j - i),k);
-                end
-            end
-        end
-        
-        for j=na+1:P
-            for i=1:na
-                for k=1:deg
                     y_mod(j) = y_mod(j) + w(nb*deg + (i-1)*deg + k)*power(y_mod(j - i),k);
                 end
             end

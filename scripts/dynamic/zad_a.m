@@ -122,6 +122,6 @@ legend('Sygna³ steruj¹cy u[k]', 'Sygna³ wyjœciowy y[k]')
 xlabel('Czas dyskretny k');
 ylabel('Wyjœcie procesu y/ Sygna³ steruj¹cy u');
 
-print_figure('dane_dyn_ucz_both')
+print_figure('dane_dyn_wer_both')
 hold off;
 close

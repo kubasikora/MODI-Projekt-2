@@ -6,7 +6,7 @@
 
 
 how_many = 10;
-
+coeffs = [];
 err_ucz_arx = zeros(how_many);
 err_ucz_oe = zeros(how_many);
 err_wer_arx = zeros(how_many);
@@ -36,7 +36,8 @@ for lvl=1:how_many
 
     % Obliczenie wspó³czynników
     w = M\Y;
-
+    coeffs{lvl} = w;
+    
     % Model ARX
     y_mod = zeros(P,1);
 
@@ -112,10 +113,10 @@ for lvl=1:how_many
     t = linspace(0,2000,length(Y));
     hold on
     plot(t, y_mod(na+1:P), 'r')
-    plot(t, Y, 'b')
+    plot(t, y_wer(na+1:P), 'b')
     grid on
     grid minor
-    title(strcat('Model OE - dane weryfikuj¹ce, rzad = ', num2str(lvl), ', B³¹d = ', num2str(err_wer_arx(lvl))));  
+    title(strcat('Model ARX - dane weryfikuj¹ce, rzad = ', num2str(lvl), ', B³¹d = ', num2str(err_wer_arx(lvl))));  
     xlabel('Czas dyskretny k');
     ylabel('Wyjœcie procesu y');
     legend('Wyjœcie modelu y_{mod}[k]', 'Wyjœcie procesu y[k]', 'Location', 'southeast')
@@ -140,7 +141,7 @@ for lvl=1:how_many
     figure
     hold on
     plot(t, y_mod(na+1:P), 'r')
-    plot(t, Y, 'b')
+    plot(t, y_wer(na+1:P), 'b')
     grid on
     grid minor
     title(strcat('Model OE - dane weryfikuj¹ce, rzad dynamiki = ', num2str(lvl), ', B³¹d = ', num2str(err_wer_oe(lvl))));    
@@ -151,3 +152,5 @@ for lvl=1:how_many
     print_figure(strcat('lindyn_oe_wer_', num2str(lvl)));
     close
 end
+save '../../data/dynamic_linear_coeffs.mat' coeffs
+save '../../data/dynamic_linear_errors.mat' err_ucz_arx err_ucz_oe err_wer_arx err_wer_oe
