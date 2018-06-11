@@ -5,7 +5,7 @@
 % UWAGA - Przed rozpoczêciem pracy nale¿y wyczyscic workspace'a i uruchomiæ skrypt zad_b.m
 
 r = 4; % rzad modelu
-
+load x
 % Wektor wyjœæ Y
 Y = x;
 u_ucz = u_vect';
