@@ -4,7 +4,12 @@
 
 % UWAGA - Przed rozpoczêciem pracy nale¿y wyczyscic workspace'a i uruchomiæ skrypt zad_b.m
 
+<<<<<<< HEAD
 load x
+=======
+r = 4; % rzad modelu
+
+>>>>>>> parent of 3f6f68f... tidying up
 % Wektor wyjœæ Y
 r = 4;
 Y = x;

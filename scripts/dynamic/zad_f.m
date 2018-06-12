@@ -31,5 +31,9 @@ title('Charakterystyka statyczna procesu');
 xlabel('Sygna³ steruj¹cy u');
 ylabel('Wyjœcie procesu y');
 hold off
+<<<<<<< HEAD
 print_figure('chtyka_stat_mod_nielin');
 save x
+=======
+print_figure('chtyka_stat_mod_nielin');
+>>>>>>> parent of 3f6f68f... tidying up
