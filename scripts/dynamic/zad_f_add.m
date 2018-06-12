@@ -4,9 +4,9 @@
 
 % UWAGA - Przed rozpoczêciem pracy nale¿y wyczyscic workspace'a i uruchomiæ skrypt zad_b.m
 
-r = 4; % rzad modelu
 load x
 % Wektor wyjœæ Y
+r = 4;
 Y = x;
 u_ucz = u_vect';
 y_ucz = x;
@@ -42,7 +42,7 @@ end
 
 ucz_error = 0;
 for i=1:100
-    ucz_error = ucz_error + (y_ucz_mod(i) - y_ucz(i))^2;
+    ucz_error = ucz_error + (y_mod(i) - y_ucz(i))^2;
 end
 
 % Wykres uzyskanego modelu na tle danych ucz¹cych
