@@ -1,3 +1,5 @@
+% skrypt zapisujacy wykresy w wysokiej rozdzielczosci
+% autor: Jakub Sikora
 function [] = print_figure(name)
     % Wyjdz z folderu scripts
     folder = pwd();
