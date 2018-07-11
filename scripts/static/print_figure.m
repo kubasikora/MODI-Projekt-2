@@ -1,12 +1,10 @@
-% skrypt zapisujacy wykresy w wysokiej rozdzielczosci
-% autor: Jakub Sikora
 function [] = print_figure(name)
     % Wyjdz z folderu scripts
     folder = pwd();
     cd('../')
     cd('../')
     
-    % StwÛrz folder na wykresy jeúli jeszcze nie istnieje
+    % Stw√≥rz folder na wykresy je≈ìli jeszcze nie istnieje
     if(exist('figures', 'dir') == 0)
         mkdir('figures'); 
     end
